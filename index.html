@@ -43,23 +43,37 @@
         href="https://www.base64decode.org/"> peel </a>the layer</p>
 
     <!-- Hidden input element with encrypted string -->
-    <input type="hidden" id="sword" value="Your encrypted string here">
+    <input type="hidden" id="sword" value="Bsmu xjsi xlii">
 
     <!-- JavaScript to fetch and decrypt the hidden string -->
     <script>
         // Function to decrypt the hidden string
-        function decryptHiddenString() {
-            const encryptedString = document.getElementById('sword').value;
-            // Replace this decryption logic with your own
-            const decryptedString = decryptFunction(encryptedString);
-            console.log(decryptedString);
-        }
-
-        // Replace this function with your own decryption logic
         function decryptFunction(encryptedString) {
             // Replace this with your decryption algorithm
-            // For example, you can use atob to decode a Base64-encoded string
-            return atob(encryptedString);
+            // In this example, we use a simple Caesar cipher decryption
+            const shift = 1; // Shift value for Caesar cipher
+            let decryptedString = '';
+
+            for (let i = 0; i < encryptedString.length; i++) {
+                const char = encryptedString.charAt(i);
+
+                if (char.match(/[a-z]/i)) {
+                    const code = encryptedString.charCodeAt(i);
+                    const shiftedCode = code - shift;
+
+                    if (char.match(/[a-z]/) && shiftedCode < 97) {
+                        decryptedString += String.fromCharCode(shiftedCode + 26);
+                    } else if (char.match(/[A-Z]/) && shiftedCode < 65) {
+                        decryptedString += String.fromCharCode(shiftedCode + 26);
+                    } else {
+                        decryptedString += String.fromCharCode(shiftedCode);
+                    }
+                } else {
+                    decryptedString += char;
+                }
+            }
+
+            return decryptedString;
         }
 
         // Listen for user input
@@ -67,7 +81,9 @@
             if (event.key === 'Enter') {
                 const input = prompt('Type "sword" to reveal the hidden string:');
                 if (input === 'sword') {
-                    decryptHiddenString();
+                    const encryptedString = document.getElementById('sword').value;
+                    const decryptedString = decryptFunction(encryptedString);
+                    console.log(decryptedString);
                 }
             }
         });
