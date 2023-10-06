@@ -39,23 +39,36 @@
         <a href="https://futureboy.us/stegano/decinput.html"> <img src="./hckimg_1steg.jpg"></a>
     </div>
 
-    <p>Everything in this world is like an "<u>onion</u>", that means in layers, so to look into reality, you have to <a style="color: black;" href="https://www.base64decode.org/"> peel </a>the layer</p>
+    <p>Everything in this world is like an "<u>onion</u>", that means in layers, so to look into reality, you have to <a style="color: black;"
+        href="https://www.base64decode.org/"> peel </a>the layer</p>
 
-    <!-- Hidden input element -->
-    <input type="hidden" id="sword" value="Your hidden string here">
+    <!-- Hidden input element with encrypted string -->
+    <input type="hidden" id="sword" value="Your encrypted string here">
 
-    <!-- JavaScript to fetch the hidden string -->
+    <!-- JavaScript to fetch and decrypt the hidden string -->
     <script>
-        // Function to fetch the hidden string
-        function getHiddenString() {
-            const hiddenString = document.getElementById('sword').value;
-            console.log(hiddenString);
+        // Function to decrypt the hidden string
+        function decryptHiddenString() {
+            const encryptedString = document.getElementById('sword').value;
+            // Replace this decryption logic with your own
+            const decryptedString = decryptFunction(encryptedString);
+            console.log(decryptedString);
         }
 
-        // Event listener to trigger getHiddenString function when someone types "sword"
-        document.addEventListener("keyup", function(event) {
-            if (event.key.toLowerCase() === "s" && event.altKey) {
-                getHiddenString();
+        // Replace this function with your own decryption logic
+        function decryptFunction(encryptedString) {
+            // Replace this with your decryption algorithm
+            // For example, you can use atob to decode a Base64-encoded string
+            return atob(encryptedString);
+        }
+
+        // Listen for user input
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                const input = prompt('Type "sword" to reveal the hidden string:');
+                if (input === 'sword') {
+                    decryptHiddenString();
+                }
             }
         });
     </script>
