@@ -41,14 +41,19 @@
         <a href="https://futureboy.us/stegano/decinput.html"> <img src="./hckimg_1steg.jpg"></a>
     </div>
 
-    <p>Everything in this world is like an "<u>onion</u>", that means in layer, so to look into reality, you have to <a style="color: black;"
-            href="https://www.base64decode.org/"> peel </a>the layer</p>
+    <p>Everything in this world is like an "<u>onion</u>", that means in layer, so to look into reality, you have to <a
+            style="color: black;" href="https://www.base64decode.org/"> peel </a>the layer</p>
 
-    <div id="sword" style="display: none;">
-    <!-- Your hidden content goes here -->
-    This is a hidden element that becomes visible when accessed through JavaScript.
-</div>
-
+    <!-- JavaScript to create the hidden element -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var hiddenElement = document.createElement("div");
+            hiddenElement.id = "sword";
+            hiddenElement.style.display = "none";
+            hiddenElement.innerHTML = "This is a hidden element that becomes visible when accessed through JavaScript.";
+            document.body.appendChild(hiddenElement);
+        });
+    </script>
 </body>
 
 </html>
